@@ -44,17 +44,23 @@ func checkPackageNoLanguageReservedKeywords(
 	request check.Request,
 	fileDescriptor descriptor.FileDescriptor,
 ) error {
-	enabledLanguages := slices.Collect(maps.Keys(languageReservedKeywords))
+	// Default to all languages being enabled.
+	validLanguages := make([]string, 0, len(languageReservedKeywords))
+	for language := range maps.Keys(languageReservedKeywords) {
+		validLanguages = append(validLanguages, strings.ToLower(language))
+	}
 	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
 	if err != nil {
 		return err
 	}
 	if len(enabledLanguagesOptionKey) != 0 {
 		for _, optionLanguage := range enabledLanguagesOptionKey {
-			if !slices.Contains(enabledLanguages, optionLanguage) {
-				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(enabledLanguages, ", "))
+			if !slices.Contains(validLanguages, optionLanguage) {
+				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(validLanguages, ", "))
 			}
 		}
+		// Use the specified languages instead.
+		validLanguages = enabledLanguagesOptionKey
 	}
 	packageName := fileDescriptor.FileDescriptorProto().Package
 	if packageName == nil {
@@ -63,7 +69,7 @@ func checkPackageNoLanguageReservedKeywords(
 	packageComponents := strings.SplitSeq(*packageName, ".")
 	for packageComponent := range packageComponents {
 		for language, reservedKeywords := range languageReservedKeywords {
-			if !slices.Contains(enabledLanguages, language) {
+			if !slices.Contains(validLanguages, strings.ToLower(language)) {
 				// Skip languages that aren't enabled.
 				continue
 			}
@@ -87,7 +93,7 @@ func checkPackageNoLanguageReservedKeywords(
 var (
 	languageReservedKeywords = map[string][]string{
 		// Ref: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
-		"java": {
+		"Java": {
 			"abstract",
 			"assert",
 			"boolean",
