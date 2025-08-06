@@ -1,8 +1,11 @@
 module github.com/stefanvanburen/buf-check-reserved-keywords
 
-go 1.23.3
+go 1.24.5
 
-require buf.build/go/bufplugin v0.9.0
+require (
+	buf.build/go/bufplugin v0.9.0
+	github.com/stretchr/testify v1.10.0
+)
 
 require (
 	buf.build/gen/go/bufbuild/bufplugin/protocolbuffers/go v1.36.3-20250121211742-6d880cc6cc8d.1 // indirect
@@ -19,7 +22,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stoewer/go-strcase v1.3.0 // indirect
-	github.com/stretchr/testify v1.10.0 // indirect
 	golang.org/x/exp v0.0.0-20250128182459-e0ece0dbea4c // indirect
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect

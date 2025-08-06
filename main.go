@@ -2,12 +2,15 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"maps"
 	"slices"
 	"strings"
 
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checkutil"
 	"buf.build/go/bufplugin/descriptor"
+	"buf.build/go/bufplugin/option"
 )
 
 func main() {
@@ -16,6 +19,11 @@ func main() {
 
 const (
 	ruleID = "PLUGIN_PACKAGE_NO_LANGUAGE_RESERVED_KEYWORDS"
+
+	// enabledLanguagesOptionKey is the option key to override the default set of enabled
+	// languages.
+	// By default, all languages are checked.
+	enabledLanguagesOptionKey = "enabled_languages"
 )
 
 var spec = &check.Spec{
@@ -33,16 +41,32 @@ var spec = &check.Spec{
 func checkPackageNoLanguageReservedKeywords(
 	_ context.Context,
 	responseWriter check.ResponseWriter,
-	_ check.Request,
+	request check.Request,
 	fileDescriptor descriptor.FileDescriptor,
 ) error {
+	enabledLanguages := slices.Collect(maps.Keys(languageReservedKeywords))
+	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
+	if err != nil {
+		return err
+	}
+	if len(enabledLanguagesOptionKey) != 0 {
+		for _, optionLanguage := range enabledLanguagesOptionKey {
+			if !slices.Contains(enabledLanguages, optionLanguage) {
+				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(enabledLanguages, ", "))
+			}
+		}
+	}
 	packageName := fileDescriptor.FileDescriptorProto().Package
 	if packageName == nil {
 		return nil
 	}
-	packageComponents := strings.Split(*packageName, ".")
-	for _, packageComponent := range packageComponents {
+	packageComponents := strings.SplitSeq(*packageName, ".")
+	for packageComponent := range packageComponents {
 		for language, reservedKeywords := range languageReservedKeywords {
+			if !slices.Contains(enabledLanguages, language) {
+				// Skip languages that aren't enabled.
+				continue
+			}
 			if slices.Contains(reservedKeywords, packageComponent) {
 				responseWriter.AddAnnotation(
 					check.WithMessagef(
@@ -63,7 +87,7 @@ func checkPackageNoLanguageReservedKeywords(
 var (
 	languageReservedKeywords = map[string][]string{
 		// Ref: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
-		"Java": {
+		"java": {
 			"abstract",
 			"assert",
 			"boolean",
