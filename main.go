@@ -2,12 +2,15 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"maps"
 	"slices"
 	"strings"
 
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checkutil"
 	"buf.build/go/bufplugin/descriptor"
+	"buf.build/go/bufplugin/option"
 )
 
 func main() {
@@ -16,6 +19,11 @@ func main() {
 
 const (
 	ruleID = "PLUGIN_PACKAGE_NO_LANGUAGE_RESERVED_KEYWORDS"
+
+	// enabledLanguagesOptionKey is the option key to override the default set of enabled
+	// languages.
+	// By default, all languages are checked.
+	enabledLanguagesOptionKey = "enabled_languages"
 )
 
 var spec = &check.Spec{
@@ -33,16 +41,38 @@ var spec = &check.Spec{
 func checkPackageNoLanguageReservedKeywords(
 	_ context.Context,
 	responseWriter check.ResponseWriter,
-	_ check.Request,
+	request check.Request,
 	fileDescriptor descriptor.FileDescriptor,
 ) error {
+	// Default to all languages being enabled.
+	validLanguages := make([]string, 0, len(languageReservedKeywords))
+	for language := range maps.Keys(languageReservedKeywords) {
+		validLanguages = append(validLanguages, strings.ToLower(language))
+	}
+	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
+	if err != nil {
+		return err
+	}
+	if len(enabledLanguagesOptionKey) != 0 {
+		for _, optionLanguage := range enabledLanguagesOptionKey {
+			if !slices.Contains(validLanguages, optionLanguage) {
+				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(validLanguages, ", "))
+			}
+		}
+		// Use the specified languages instead.
+		validLanguages = enabledLanguagesOptionKey
+	}
 	packageName := fileDescriptor.FileDescriptorProto().Package
 	if packageName == nil {
 		return nil
 	}
-	packageComponents := strings.Split(*packageName, ".")
-	for _, packageComponent := range packageComponents {
+	packageComponents := strings.SplitSeq(*packageName, ".")
+	for packageComponent := range packageComponents {
 		for language, reservedKeywords := range languageReservedKeywords {
+			if !slices.Contains(validLanguages, strings.ToLower(language)) {
+				// Skip languages that aren't enabled.
+				continue
+			}
 			if slices.Contains(reservedKeywords, packageComponent) {
 				responseWriter.AddAnnotation(
 					check.WithMessagef(
