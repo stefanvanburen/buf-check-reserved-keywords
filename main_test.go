@@ -81,7 +81,7 @@ func TestRule(t *testing.T) {
 				require.Error(t, err)
 				// Just check the prefix, so this doesn't fail as we add new supported
 				// languages.
-				require.True(t, strings.HasPrefix(err.Error(), `Failed with code unknown: invalid language given "go", expected one of:`))
+				require.True(t, strings.HasPrefix(err.Error(), `Failed with code unknown: invalid language given "invalid", expected one of:`))
 			})
 			t.Run("valid", func(t *testing.T) {
 				requestSpec := newRequestSpec(
