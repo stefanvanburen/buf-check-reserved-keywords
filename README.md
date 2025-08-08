@@ -17,6 +17,7 @@ and prevent their usage in protobuf files.
 
 * [Java][]
 * [Go][]
+* [Python][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
