@@ -16,7 +16,9 @@ and prevent their usage in protobuf files.
 ## Supported Languages
 
 * [Java][]
+* [Go][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+[go]: https://go.dev/ref/spec#Keywords

@@ -18,19 +18,38 @@ func TestRule(t *testing.T) {
 	t.Parallel()
 	t.Run("invalid", func(t *testing.T) {
 		t.Parallel()
-		requestSpec := newRequestSpec(
-			"testdata/java",
-			[]string{"java.proto"},
-			nil,
-		)
-		want := checktest.ExpectedAnnotation{
-			RuleID:  ruleID,
-			Message: `Package name "private" should not use Java reserved keyword "private".`,
-			FileLocation: &checktest.ExpectedFileLocation{
-				FileName: "java.proto",
-			},
-		}
-		runCheckTest(t, requestSpec, want)
+		t.Run("java", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/java",
+				[]string{"java.proto"},
+				nil,
+			)
+			want := checktest.ExpectedAnnotation{
+				RuleID:  ruleID,
+				Message: `Package name "private" should not use Java reserved keyword "private".`,
+				FileLocation: &checktest.ExpectedFileLocation{
+					FileName: "java.proto",
+				},
+			}
+			runCheckTest(t, requestSpec, want)
+		})
+		t.Run("go", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/go",
+				[]string{"go.proto"},
+				nil,
+			)
+			want := checktest.ExpectedAnnotation{
+				RuleID:  ruleID,
+				Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
+				FileLocation: &checktest.ExpectedFileLocation{
+					FileName: "go.proto",
+				},
+			}
+			runCheckTest(t, requestSpec, want)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()
@@ -49,7 +68,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"go"},
+						"enabled_languages": []string{"invalid"},
 					},
 				)
 
@@ -62,14 +81,14 @@ func TestRule(t *testing.T) {
 				require.Error(t, err)
 				// Just check the prefix, so this doesn't fail as we add new supported
 				// languages.
-				require.True(t, strings.HasPrefix(err.Error(), `Failed with code unknown: invalid language given "go", expected one of:`))
+				require.True(t, strings.HasPrefix(err.Error(), `Failed with code unknown: invalid language given "invalid", expected one of:`))
 			})
 			t.Run("valid", func(t *testing.T) {
 				requestSpec := newRequestSpec(
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java"},
+						"enabled_languages": []string{"java", "go"},
 					},
 				)
 
