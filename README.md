@@ -12,7 +12,7 @@ but to summarize:
 1. Add the following to your `buf.yaml`'s `plugins:` stanza:
 
 ```yaml
-- plugin: buf.build/svanburenorg/reserved-keywords:main`
+- plugin: buf.build/svanburenorg/reserved-keywords:main
 ```
 
 2. Run the following command to download the plugin to your local environment:
