@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	_ "embed"
 	"fmt"
 	"slices"
 	"strings"
@@ -11,6 +12,11 @@ import (
 	"buf.build/go/bufplugin/descriptor"
 	"buf.build/go/bufplugin/info"
 	"buf.build/go/bufplugin/option"
+)
+
+var (
+	//go:embed README.md
+	readmeMarkdown string
 )
 
 func main() {
@@ -37,7 +43,7 @@ var spec = &check.Spec{
 		},
 	},
 	Info: &info.Spec{
-		Documentation: `buf check plugin to check for language reserved keywords in protobuf files.`,
+		Documentation: readmeMarkdown,
 		SPDXLicenseID: "apache-2.0",
 		LicenseURL:    "https://github.com/stefanvanburen/buf-check-reserved-keywords/blob/main/LICENSE",
 	},
