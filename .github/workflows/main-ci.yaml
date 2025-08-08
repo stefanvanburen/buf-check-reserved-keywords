@@ -12,6 +12,7 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           setup_only: true
+          token: ${{ secrets.BUF_TOKEN }}
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
