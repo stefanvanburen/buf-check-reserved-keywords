@@ -68,7 +68,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"go"},
+						"enabled_languages": []string{"invalid"},
 					},
 				)
 
@@ -88,7 +88,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java"},
+						"enabled_languages": []string{"java", "go"},
 					},
 				)
 
