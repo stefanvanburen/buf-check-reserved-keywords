@@ -19,6 +19,7 @@ and prevent their usage in protobuf files.
 * [Go][]
 * [Python][]
 * [JavaScript][]
+* [Dart][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
@@ -26,3 +27,4 @@ and prevent their usage in protobuf files.
 [go]: https://go.dev/ref/spec#Keywords
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+[dart]: https://dart.dev/language/keywords

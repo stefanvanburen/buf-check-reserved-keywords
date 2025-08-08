@@ -72,7 +72,7 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want)
 		})
-		t.Run("javaScript", func(t *testing.T) {
+		t.Run("javascript", func(t *testing.T) {
 			t.Parallel()
 			requestSpec := newRequestSpec(
 				"testdata/javascript",
@@ -86,6 +86,24 @@ func TestRule(t *testing.T) {
 				Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
 				FileLocation: &checktest.ExpectedFileLocation{
 					FileName: "javascript.proto",
+				},
+			}
+			runCheckTest(t, requestSpec, want)
+		})
+		t.Run("dart", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/dart",
+				[]string{"dart.proto"},
+				map[string]any{
+					"enabled_languages": []string{"dart"},
+				},
+			)
+			want := checktest.ExpectedAnnotation{
+				RuleID:  ruleID,
+				Message: `Package name "show.v1" should not use Dart reserved keyword "show".`,
+				FileLocation: &checktest.ExpectedFileLocation{
+					FileName: "dart.proto",
 				},
 			}
 			runCheckTest(t, requestSpec, want)
@@ -128,7 +146,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java", "go", "python"},
+						"enabled_languages": []string{"java", "go", "python", "javascript", "dart"},
 					},
 				)
 
