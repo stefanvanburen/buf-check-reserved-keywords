@@ -2,7 +2,36 @@
 
 This repository contains a [`buf` check plugin][buf-check-plugin] that checks for use of language reserved keywords in protobuf files.
 
-It is published to the BSR at [svanburenorg/reserved-keywords](https://buf.build/svanburenorg/reserved-keywords).
+It is published to the BSR at [svanburenorg/reserved-keywords][bsr-module].
+
+## Usage
+
+You can find usage instructions on the BSR at [svanburenorg/reserved-keywords][bsr-module],
+but to summarize:
+
+1. Add the following to your `buf.yaml`'s `plugins:` stanza:
+
+```yaml
+- plugin: buf.build/svanburenorg/reserved-keywords:main`
+```
+
+1. Run the following command to download the plugin to your local environment:
+
+```console
+$ buf plugin update
+```
+
+1. If you have any `lint.use` rules specified
+   (you probably have `DEFAULT` already added from the default `buf config init`),
+   you'll need to explicitly add the lint rule to your `lint.use` stanza:
+
+```diff
+lint:
+  use:
+    - DEFAULT
++   - PLUGIN_PACKAGE_NO_LANGUAGE_RESERVED_KEYWORDS
+```
+
 
 ## Why?
 
@@ -22,6 +51,7 @@ and prevent their usage in protobuf files.
 * [Dart][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
+[bsr-module]: https://buf.build/svanburenorg/reserved-keywords
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
 [go]: https://go.dev/ref/spec#Keywords
