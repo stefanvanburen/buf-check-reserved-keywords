@@ -15,13 +15,13 @@ but to summarize:
 - plugin: buf.build/svanburenorg/reserved-keywords:main`
 ```
 
-1. Run the following command to download the plugin to your local environment:
+2. Run the following command to download the plugin to your local environment:
 
 ```console
 $ buf plugin update
 ```
 
-1. If you have any `lint.use` rules specified
+3. If you have any `lint.use` rules specified
    (you probably have `DEFAULT` already added from the default `buf config init`),
    you'll need to explicitly add the lint rule to your `lint.use` stanza:
 
