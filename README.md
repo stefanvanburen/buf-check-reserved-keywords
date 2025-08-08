@@ -18,9 +18,11 @@ and prevent their usage in protobuf files.
 * [Java][]
 * [Go][]
 * [Python][]
+* [JavaScript][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
 [go]: https://go.dev/ref/spec#Keywords
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
+[javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords

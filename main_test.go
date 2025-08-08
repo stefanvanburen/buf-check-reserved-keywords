@@ -72,6 +72,24 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want)
 		})
+		t.Run("javaScript", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/javascript",
+				[]string{"javascript.proto"},
+				map[string]any{
+					"enabled_languages": []string{"javascript"},
+				},
+			)
+			want := checktest.ExpectedAnnotation{
+				RuleID:  ruleID,
+				Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
+				FileLocation: &checktest.ExpectedFileLocation{
+					FileName: "javascript.proto",
+				},
+			}
+			runCheckTest(t, requestSpec, want)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()
