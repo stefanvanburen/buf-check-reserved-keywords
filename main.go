@@ -9,6 +9,7 @@ import (
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checkutil"
 	"buf.build/go/bufplugin/descriptor"
+	"buf.build/go/bufplugin/info"
 	"buf.build/go/bufplugin/option"
 )
 
@@ -34,6 +35,11 @@ var spec = &check.Spec{
 			Type:    check.RuleTypeLint,
 			Handler: checkutil.NewFileRuleHandler(checkPackageNoLanguageReservedKeywords, checkutil.WithoutImports()),
 		},
+	},
+	Info: &info.Spec{
+		Documentation: `buf check plugin to check for language reserved keywords in protobuf files.`,
+		SPDXLicenseID: "apache-2.0",
+		LicenseURL:    "https://github.com/stefanvanburen/buf-check-reserved-keywords/blob/main/LICENSE",
 	},
 }
 
