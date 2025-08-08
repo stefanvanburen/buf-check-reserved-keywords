@@ -23,7 +23,9 @@ func TestRule(t *testing.T) {
 			requestSpec := newRequestSpec(
 				"testdata/java",
 				[]string{"java.proto"},
-				nil,
+				map[string]any{
+					"enabled_languages": []string{"java"},
+				},
 			)
 			want := checktest.ExpectedAnnotation{
 				RuleID:  ruleID,
@@ -39,13 +41,33 @@ func TestRule(t *testing.T) {
 			requestSpec := newRequestSpec(
 				"testdata/go",
 				[]string{"go.proto"},
-				nil,
+				map[string]any{
+					"enabled_languages": []string{"go"},
+				},
 			)
 			want := checktest.ExpectedAnnotation{
 				RuleID:  ruleID,
 				Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
 				FileLocation: &checktest.ExpectedFileLocation{
 					FileName: "go.proto",
+				},
+			}
+			runCheckTest(t, requestSpec, want)
+		})
+		t.Run("python", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/python",
+				[]string{"python.proto"},
+				map[string]any{
+					"enabled_languages": []string{"python"},
+				},
+			)
+			want := checktest.ExpectedAnnotation{
+				RuleID:  ruleID,
+				Message: `Package name "continue.v1" should not use Python reserved keyword "continue".`,
+				FileLocation: &checktest.ExpectedFileLocation{
+					FileName: "python.proto",
 				},
 			}
 			runCheckTest(t, requestSpec, want)
@@ -88,7 +110,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java", "go"},
+						"enabled_languages": []string{"java", "go", "python"},
 					},
 				)
 
