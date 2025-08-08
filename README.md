@@ -22,3 +22,4 @@ and prevent their usage in protobuf files.
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
 [go]: https://go.dev/ref/spec#Keywords
+[python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"maps"
 	"slices"
 	"strings"
 
@@ -46,7 +45,7 @@ func checkPackageNoLanguageReservedKeywords(
 ) error {
 	// Default to all languages being enabled.
 	validLanguages := make([]string, 0, len(languageReservedKeywords))
-	for language := range maps.Keys(languageReservedKeywords) {
+	for language := range languageReservedKeywords {
 		validLanguages = append(validLanguages, strings.ToLower(language))
 	}
 	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
@@ -172,6 +171,49 @@ var (
 			"import",
 			"return",
 			"var",
+		},
+		"Python": {
+			// https://docs.python.org/3/reference/lexical_analysis.html#keywords
+			"False",
+			"await",
+			"else",
+			"import",
+			"pass",
+			"None",
+			"break",
+			"except",
+			"in",
+			"raise",
+			"True",
+			"class",
+			"finally",
+			"is",
+			"return",
+			"and",
+			"continue",
+			"for",
+			"lambda",
+			"try",
+			"as",
+			"def",
+			"from",
+			"nonlocal",
+			"while",
+			"assert",
+			"del",
+			"global",
+			"not",
+			"with",
+			"async",
+			"elif",
+			"if",
+			"or",
+			"yield",
+			// https://docs.python.org/3/reference/lexical_analysis.html#soft-keywords
+			"match",
+			"case",
+			"type",
+			"_",
 		},
 	}
 )
