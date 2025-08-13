@@ -28,4 +28,5 @@ jobs:
       - run: |
           GOOS=wasip1 GOARCH=wasm go build -o buf-check-reserved-keywords.wasm .
           buf plugin push buf.build/svanburenorg/reserved-keywords \
-              --binary=buf-check-reserved-keywords.wasm
+              --binary=buf-check-reserved-keywords.wasm \
+              --source-control-url=https://github.com/${{github.repository}}/commit/${{github.sha}}
