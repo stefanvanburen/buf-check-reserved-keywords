@@ -1,0 +1,11 @@
+# https://docs.zizmor.sh/audits/
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        # Trust zizmorcore actions, like https://github.com/zizmorcore/zizmore-action.
+        zizmorcore/*: any
+        # Trust bufbuild actions, like https://github.com/bufbuild/buf-action.
+        bufbuild/*: any
+        # Trust (GitHub) actions/ actions, like https://github.com/actions/setup-go.
+        actions/*: any
