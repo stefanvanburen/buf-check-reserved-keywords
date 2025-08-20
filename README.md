@@ -9,7 +9,7 @@ It is published to the BSR at [svanburenorg/reserved-keywords][bsr-module].
 You can find usage instructions on the BSR at [svanburenorg/reserved-keywords][bsr-module],
 but to summarize:
 
-1. Add the following to your `buf.yaml`'s `plugins:` stanza:
+1. Add the following to your [`buf.yaml`'s `plugins:` stanza][buf-yaml-plugins]:
 
 ```yaml
 - plugin: buf.build/svanburenorg/reserved-keywords:main
@@ -51,6 +51,7 @@ and prevent their usage in protobuf files.
 * [Dart][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
+[buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
 [bsr-module]: https://buf.build/svanburenorg/reserved-keywords
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
