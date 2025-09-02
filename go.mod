@@ -4,7 +4,7 @@ go 1.24.5
 
 require (
 	buf.build/go/bufplugin v0.9.0
-	github.com/stretchr/testify v1.11.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (
