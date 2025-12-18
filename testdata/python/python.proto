@@ -2,4 +2,6 @@ syntax = "proto3";
 
 package continue.v1;
 
-message Test {}
+message Test {
+  string for = 1;
+}

@@ -27,14 +27,27 @@ func TestRule(t *testing.T) {
 					"enabled_languages": []string{"java"},
 				},
 			)
-			want := checktest.ExpectedAnnotation{
-				RuleID:  ruleID,
-				Message: `Package name "private" should not use Java reserved keyword "private".`,
-				FileLocation: &checktest.ExpectedFileLocation{
-					FileName: "java.proto",
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Java reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "java.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "private.v1" should not use Java reserved keyword "private".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "java.proto",
+					},
 				},
 			}
-			runCheckTest(t, requestSpec, want)
+			runCheckTest(t, requestSpec, want...)
 		})
 		t.Run("go", func(t *testing.T) {
 			t.Parallel()
@@ -45,14 +58,27 @@ func TestRule(t *testing.T) {
 					"enabled_languages": []string{"go"},
 				},
 			)
-			want := checktest.ExpectedAnnotation{
-				RuleID:  ruleID,
-				Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
-				FileLocation: &checktest.ExpectedFileLocation{
-					FileName: "go.proto",
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Go reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "go.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "go.proto",
+					},
 				},
 			}
-			runCheckTest(t, requestSpec, want)
+			runCheckTest(t, requestSpec, want...)
 		})
 		t.Run("python", func(t *testing.T) {
 			t.Parallel()
@@ -63,14 +89,27 @@ func TestRule(t *testing.T) {
 					"enabled_languages": []string{"python"},
 				},
 			)
-			want := checktest.ExpectedAnnotation{
-				RuleID:  ruleID,
-				Message: `Package name "continue.v1" should not use Python reserved keyword "continue".`,
-				FileLocation: &checktest.ExpectedFileLocation{
-					FileName: "python.proto",
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Python reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "python.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "continue.v1" should not use Python reserved keyword "continue".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "python.proto",
+					},
 				},
 			}
-			runCheckTest(t, requestSpec, want)
+			runCheckTest(t, requestSpec, want...)
 		})
 		t.Run("javascript", func(t *testing.T) {
 			t.Parallel()
@@ -81,14 +120,27 @@ func TestRule(t *testing.T) {
 					"enabled_languages": []string{"javascript"},
 				},
 			)
-			want := checktest.ExpectedAnnotation{
-				RuleID:  ruleID,
-				Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
-				FileLocation: &checktest.ExpectedFileLocation{
-					FileName: "javascript.proto",
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use JavaScript reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "javascript.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "javascript.proto",
+					},
 				},
 			}
-			runCheckTest(t, requestSpec, want)
+			runCheckTest(t, requestSpec, want...)
 		})
 		t.Run("dart", func(t *testing.T) {
 			t.Parallel()
@@ -99,14 +151,27 @@ func TestRule(t *testing.T) {
 					"enabled_languages": []string{"dart"},
 				},
 			)
-			want := checktest.ExpectedAnnotation{
-				RuleID:  ruleID,
-				Message: `Package name "show.v1" should not use Dart reserved keyword "show".`,
-				FileLocation: &checktest.ExpectedFileLocation{
-					FileName: "dart.proto",
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Dart reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "dart.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "show.v1" should not use Dart reserved keyword "show".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "dart.proto",
+					},
 				},
 			}
-			runCheckTest(t, requestSpec, want)
+			runCheckTest(t, requestSpec, want...)
 		})
 	})
 	t.Run("valid", func(t *testing.T) {

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
-package private;
+package private.v1;
 
-message Test {}
+message Test {
+  string for = 1;
+}
