@@ -64,23 +64,9 @@ func checkPackageNoLanguageReservedKeywords(
 	request check.Request,
 	fileDescriptor descriptor.FileDescriptor,
 ) error {
-	// Default to all languages being enabled.
-	validLanguages := make([]string, 0, len(languageReservedKeywords))
-	for language := range languageReservedKeywords {
-		validLanguages = append(validLanguages, strings.ToLower(language))
-	}
-	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
+	validLanguages, err := getOptions(request)
 	if err != nil {
-		return err
-	}
-	if len(enabledLanguagesOptionKey) != 0 {
-		for _, optionLanguage := range enabledLanguagesOptionKey {
-			if !slices.Contains(validLanguages, optionLanguage) {
-				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(validLanguages, ", "))
-			}
-		}
-		// Use the specified languages instead.
-		validLanguages = enabledLanguagesOptionKey
+		return fmt.Errorf("parsing options: %w", err)
 	}
 	packageName := fileDescriptor.FileDescriptorProto().Package
 	if packageName == nil {
@@ -115,23 +101,9 @@ func checkFieldNoLanguageReservedKeywords(
 	request check.Request,
 	fieldDescriptor protoreflect.FieldDescriptor,
 ) error {
-	// Default to all languages being enabled.
-	validLanguages := make([]string, 0, len(languageReservedKeywords))
-	for language := range languageReservedKeywords {
-		validLanguages = append(validLanguages, strings.ToLower(language))
-	}
-	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
+	validLanguages, err := getOptions(request)
 	if err != nil {
-		return err
-	}
-	if len(enabledLanguagesOptionKey) != 0 {
-		for _, optionLanguage := range enabledLanguagesOptionKey {
-			if !slices.Contains(validLanguages, optionLanguage) {
-				return fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(validLanguages, ", "))
-			}
-		}
-		// Use the specified languages instead.
-		validLanguages = enabledLanguagesOptionKey
+		return fmt.Errorf("parsing options: %w", err)
 	}
 	for language, reservedKeywords := range languageReservedKeywords {
 		if !slices.Contains(validLanguages, strings.ToLower(language)) {
@@ -152,6 +124,28 @@ func checkFieldNoLanguageReservedKeywords(
 		}
 	}
 	return nil
+}
+
+func getOptions(request check.Request) (validLanguages []string, err error) {
+	// Default to all languages being enabled.
+	validLanguages = make([]string, 0, len(languageReservedKeywords))
+	for language := range languageReservedKeywords {
+		validLanguages = append(validLanguages, strings.ToLower(language))
+	}
+	enabledLanguagesOptionKey, err := option.GetStringSliceValue(request.Options(), enabledLanguagesOptionKey)
+	if err != nil {
+		return nil, err
+	}
+	if len(enabledLanguagesOptionKey) != 0 {
+		for _, optionLanguage := range enabledLanguagesOptionKey {
+			if !slices.Contains(validLanguages, optionLanguage) {
+				return nil, fmt.Errorf("invalid language given %q, expected one of: %q", optionLanguage, strings.Join(validLanguages, ", "))
+			}
+		}
+		// Use the specified languages instead.
+		validLanguages = enabledLanguagesOptionKey
+	}
+	return validLanguages, nil
 }
 
 // TODO: Support more languages.
