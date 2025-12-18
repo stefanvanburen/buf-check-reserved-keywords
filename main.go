@@ -87,7 +87,13 @@ func checkPackageNoLanguageReservedKeywords(
 						language,
 						packageComponent,
 					),
-					check.WithDescriptor(fileDescriptor.ProtoreflectFileDescriptor()),
+					check.WithFileNameAndSourcePath(
+						*fileDescriptor.FileDescriptorProto().Name,
+						// A well-formed .proto file can only have a single `package` statement;
+						// use that location.
+						// https://github.com/protocolbuffers/protobuf/blob/6556a4ea26f2273797f559ebad87df42cd540443/src/google/protobuf/descriptor.proto#L109
+						[]int32{2},
+					),
 				)
 			}
 		}

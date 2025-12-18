@@ -42,7 +42,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "private.v1" should not use Java reserved keyword "private".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "java.proto",
+						FileName:    "java.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   19,
 					},
 				},
 			}
@@ -73,7 +77,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "go.proto",
+						FileName:    "go.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   18,
 					},
 				},
 			}
@@ -104,7 +112,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "continue.v1" should not use Python reserved keyword "continue".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "python.proto",
+						FileName:    "python.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   20,
 					},
 				},
 			}
@@ -135,7 +147,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "javascript.proto",
+						FileName:    "javascript.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   18,
 					},
 				},
 			}
@@ -166,7 +182,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "show.v1" should not use Dart reserved keyword "show".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "dart.proto",
+						FileName:    "dart.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   16,
 					},
 				},
 			}
@@ -197,7 +217,11 @@ func TestRule(t *testing.T) {
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "trait.v1" should not use Rust reserved keyword "trait".`,
 					FileLocation: &checktest.ExpectedFileLocation{
-						FileName: "rust.proto",
+						FileName:    "rust.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   17,
 					},
 				},
 			}
