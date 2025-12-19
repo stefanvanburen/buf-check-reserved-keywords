@@ -32,6 +32,22 @@ lint:
 +   - PLUGIN_PACKAGE_NO_LANGUAGE_RESERVED_KEYWORDS
 ```
 
+## Options
+
+`buf-check-reserved-keywords` currently supports a single option, `enabled_languages`.
+If not specified, the plugin checks for keywords for all supported languages.
+If specified, only the specified languages are checked.
+
+For example, the following enables just checking for keywords for `go` and `python`.
+
+```yaml
+- plugin: buf.build/svanburenorg/reserved-keywords:main
+  options:
+    enabled_languages:
+      - go
+      - python
+```
+
 
 ## Why?
 
