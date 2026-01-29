@@ -60,20 +60,24 @@ and prevent their usage in protobuf files.
 
 ## Supported Languages
 
-* [Java][]
-* [Go][]
-* [Python][]
-* [JavaScript][]
+* [C][]
+* [C++][]
 * [Dart][]
+* [Go][]
+* [Java][]
+* [JavaScript][]
+* [Python][]
 * [Rust][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
 [bsr-module]: https://buf.build/svanburenorg/reserved-keywords
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
-[java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
-[go]: https://go.dev/ref/spec#Keywords
-[python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
-[javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+[c]: https://en.cppreference.com/w/c/keyword.html
+[c++]: https://en.cppreference.com/w/cpp/keyword.html
 [dart]: https://dart.dev/language/keywords
+[go]: https://go.dev/ref/spec#Keywords
+[java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+[javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+[python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [rust]: https://doc.rust-lang.org/reference/keywords.html
