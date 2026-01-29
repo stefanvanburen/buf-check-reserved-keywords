@@ -227,6 +227,76 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want...)
 		})
+		t.Run("c", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/c",
+				[]string{"c.proto"},
+				map[string]any{
+					"enabled_languages": []string{"c"},
+				},
+			)
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use C reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "c.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "switch.v1" should not use C reserved keyword "switch".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "c.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   18,
+					},
+				},
+			}
+			runCheckTest(t, requestSpec, want...)
+		})
+		t.Run("cpp", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/cpp",
+				[]string{"cpp.proto"},
+				map[string]any{
+					"enabled_languages": []string{"c++"},
+				},
+			)
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use C++ reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "cpp.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "class.v1" should not use C++ reserved keyword "class".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "cpp.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   17,
+					},
+				},
+			}
+			runCheckTest(t, requestSpec, want...)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()
@@ -265,7 +335,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java", "go", "python", "javascript", "dart", "rust"},
+						"enabled_languages": []string{"c", "c++", "dart", "go", "java", "javascript", "python", "rust"},
 					},
 				)
 
