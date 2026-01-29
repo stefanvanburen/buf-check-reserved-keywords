@@ -67,6 +67,7 @@ and prevent their usage in protobuf files.
 * [Go][]
 * [Java][]
 * [JavaScript][]
+* [Kotlin][]
 * [Python][]
 * [Rust][]
 
@@ -81,5 +82,6 @@ and prevent their usage in protobuf files.
 [go]: https://go.dev/ref/spec#Keywords
 [java]: https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+[kotlin]: https://kotlinlang.org/docs/keyword-reference.html
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [rust]: https://doc.rust-lang.org/reference/keywords.html
