@@ -68,6 +68,7 @@ and prevent their usage in protobuf files.
 * [Java][]
 * [JavaScript][]
 * [Kotlin][]
+* [Objective-C][]
 * [PHP][]
 * [Python][]
 * [Ruby][]
@@ -88,6 +89,7 @@ and prevent their usage in protobuf files.
 [java]: https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 [kotlin]: https://kotlinlang.org/docs/keyword-reference.html
+[objective-c]: https://nshipster.com/at-compiler-directives/
 [php]: https://www.php.net/manual/en/reserved.keywords.php
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [ruby]: https://docs.ruby-lang.org/en/4.0/syntax/keywords_rdoc.html
