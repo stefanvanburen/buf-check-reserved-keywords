@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package function.v1;
+
+message Test {
+  string for = 1;
+}

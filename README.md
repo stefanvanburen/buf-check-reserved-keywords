@@ -68,6 +68,7 @@ and prevent their usage in protobuf files.
 * [Java][]
 * [JavaScript][]
 * [Kotlin][]
+* [PHP][]
 * [Python][]
 * [Rust][]
 
@@ -83,5 +84,6 @@ and prevent their usage in protobuf files.
 [java]: https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 [kotlin]: https://kotlinlang.org/docs/keyword-reference.html
+[php]: https://www.php.net/manual/en/reserved.keywords.php
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [rust]: https://doc.rust-lang.org/reference/keywords.html
