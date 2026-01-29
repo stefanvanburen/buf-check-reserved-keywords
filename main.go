@@ -322,8 +322,10 @@ var (
 			"xor",
 			"xor_eq",
 		},
-		// Ref: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+		// https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
 		"Java": {
+			// Reserved keywords
+			"_",
 			"abstract",
 			"assert",
 			"boolean",
@@ -374,6 +376,24 @@ var (
 			"void",
 			"volatile",
 			"while",
+			// Contextual keywords (can cause issues in generated code)
+			"exports",
+			"module",
+			"non-sealed",
+			"open",
+			"opens",
+			"permits",
+			"provides",
+			"record",
+			"requires",
+			"sealed",
+			"to",
+			"transitive",
+			"uses",
+			"var",
+			"when",
+			"with",
+			"yield",
 		},
 		// https://go.dev/ref/spec#Keywords
 		"Go": {

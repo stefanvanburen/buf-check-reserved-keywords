@@ -77,7 +77,7 @@ and prevent their usage in protobuf files.
 [c++]: https://en.cppreference.com/w/cpp/keyword.html
 [dart]: https://dart.dev/language/keywords
 [go]: https://go.dev/ref/spec#Keywords
-[java]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+[java]: https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [rust]: https://doc.rust-lang.org/reference/keywords.html
