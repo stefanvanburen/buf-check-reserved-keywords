@@ -74,6 +74,7 @@ and prevent their usage in protobuf files.
 * [Rust][]
 * [Scala][]
 * [Swift][]
+* [TypeScript][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
@@ -93,3 +94,4 @@ and prevent their usage in protobuf files.
 [rust]: https://doc.rust-lang.org/reference/keywords.html
 [scala]: https://docs.scala-lang.org/scala3/reference/syntax.html#keywords
 [swift]: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Keywords-and-Punctuation
+[typescript]: https://github.com/microsoft/TypeScript/issues/2536
