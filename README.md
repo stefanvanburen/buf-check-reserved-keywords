@@ -62,6 +62,7 @@ and prevent their usage in protobuf files.
 
 * [C][]
 * [C++][]
+* [C#][]
 * [Dart][]
 * [Go][]
 * [Java][]
@@ -75,6 +76,7 @@ and prevent their usage in protobuf files.
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [c]: https://en.cppreference.com/w/c/keyword.html
 [c++]: https://en.cppreference.com/w/cpp/keyword.html
+[c#]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 [dart]: https://dart.dev/language/keywords
 [go]: https://go.dev/ref/spec#Keywords
 [java]: https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-ReservedKeyword
