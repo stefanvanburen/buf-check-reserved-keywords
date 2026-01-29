@@ -402,6 +402,41 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want...)
 		})
+		t.Run("ruby", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/ruby",
+				[]string{"ruby.proto"},
+				map[string]any{
+					"enabled_languages": []string{"ruby"},
+				},
+			)
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Ruby reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "ruby.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "class.v1" should not use Ruby reserved keyword "class".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "ruby.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   17,
+					},
+				},
+			}
+			runCheckTest(t, requestSpec, want...)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()
@@ -440,7 +475,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"c", "c++", "c#", "dart", "go", "java", "javascript", "kotlin", "php", "python", "rust"},
+						"enabled_languages": []string{"c", "c++", "c#", "dart", "go", "java", "javascript", "kotlin", "php", "python", "ruby", "rust"},
 					},
 				)
 
