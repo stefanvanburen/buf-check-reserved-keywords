@@ -70,6 +70,7 @@ and prevent their usage in protobuf files.
 * [Kotlin][]
 * [PHP][]
 * [Python][]
+* [Ruby][]
 * [Rust][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
@@ -86,4 +87,5 @@ and prevent their usage in protobuf files.
 [kotlin]: https://kotlinlang.org/docs/keyword-reference.html
 [php]: https://www.php.net/manual/en/reserved.keywords.php
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
+[ruby]: https://docs.ruby-lang.org/en/4.0/syntax/keywords_rdoc.html
 [rust]: https://doc.rust-lang.org/reference/keywords.html
