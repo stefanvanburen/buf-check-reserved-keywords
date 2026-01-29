@@ -172,6 +172,37 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want...)
 		})
+		t.Run("rust", func(t *testing.T) {
+			t.Parallel()
+			requestSpec := newRequestSpec(
+				"testdata/rust",
+				[]string{"rust.proto"},
+				map[string]any{
+					"enabled_languages": []string{"rust"},
+				},
+			)
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" should not use Rust reserved keyword "for".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "rust.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "trait.v1" should not use Rust reserved keyword "trait".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName: "rust.proto",
+					},
+				},
+			}
+			runCheckTest(t, requestSpec, want...)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()
@@ -210,7 +241,7 @@ func TestRule(t *testing.T) {
 					"testdata/correct",
 					[]string{"correct.proto"},
 					map[string]any{
-						"enabled_languages": []string{"java", "go", "python", "javascript", "dart"},
+						"enabled_languages": []string{"java", "go", "python", "javascript", "dart", "rust"},
 					},
 				)
 
