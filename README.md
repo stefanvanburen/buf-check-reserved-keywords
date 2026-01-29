@@ -65,6 +65,7 @@ and prevent their usage in protobuf files.
 * [Python][]
 * [JavaScript][]
 * [Dart][]
+* [Rust][]
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
@@ -75,3 +76,4 @@ and prevent their usage in protobuf files.
 [python]: https://docs.python.org/3/reference/lexical_analysis.html#keywords
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 [dart]: https://dart.dev/language/keywords
+[rust]: https://doc.rust-lang.org/reference/keywords.html
