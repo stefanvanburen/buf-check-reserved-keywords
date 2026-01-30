@@ -154,7 +154,6 @@ func getOptions(request check.Request) (validLanguages []string, err error) {
 	return validLanguages, nil
 }
 
-// TODO: Support more languages.
 var (
 	languageReservedKeywords = map[string][]string{
 		// https://en.cppreference.com/w/c/keyword.html
