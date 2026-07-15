@@ -1,11 +1,11 @@
 package main
 
 import (
+	"strings"
 	"testing"
 
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checktest"
-	"github.com/stretchr/testify/require"
 )
 
 func TestSpec(t *testing.T) {
@@ -601,14 +601,23 @@ func TestRule(t *testing.T) {
 
 				ctx := t.Context()
 				request, err := requestSpec.ToRequest(ctx)
-				require.NoError(t, err)
+				if err != nil {
+					t.Fatal(err)
+				}
 				client, err := check.NewClientForSpec(spec)
-				require.NoError(t, err)
+				if err != nil {
+					t.Fatal(err)
+				}
 				_, err = client.Check(ctx, request)
-				require.Error(t, err)
+				if err == nil {
+					t.Fatal("expected error")
+				}
 				// Just check the prefix, so this doesn't fail as we add new supported
 				// languages.
-				require.ErrorContains(t, err, `Failed with code unknown: parsing options: invalid language given "invalid", expected one of:`)
+				const want = `Failed with code unknown: parsing options: invalid language given "invalid", expected one of:`
+				if !strings.Contains(err.Error(), want) {
+					t.Fatalf("got %q, want substring %q", err, want)
+				}
 			})
 			t.Run("valid", func(t *testing.T) {
 				requestSpec := newRequestSpec(

@@ -4,7 +4,6 @@ go 1.26.2
 
 require (
 	buf.build/go/bufplugin v0.10.0
-	github.com/stretchr/testify v1.11.1
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -23,6 +22,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/testify v1.11.1 // indirect
 	golang.org/x/exp v0.0.0-20250813145105-42675adae3e6 // indirect
 	golang.org/x/exp/typeparams v0.0.0-20231108232855-2478ac86f678 // indirect
 	golang.org/x/mod v0.27.0 // indirect
