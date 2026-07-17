@@ -1,4 +1,4 @@
-module github.com/stefanvanburen/buf-check-reserved-keywords
+module go.vanburen.xyz/buf-check-reserved-keywords
 
 go 1.26.2
 

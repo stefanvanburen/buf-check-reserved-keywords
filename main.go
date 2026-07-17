@@ -54,7 +54,7 @@ var spec = &check.Spec{
 	Info: &info.Spec{
 		Documentation: readmeMarkdown,
 		SPDXLicenseID: "apache-2.0",
-		LicenseURL:    "https://github.com/stefanvanburen/buf-check-reserved-keywords/blob/main/LICENSE",
+		LicenseURL:    "https://go.vanburen.xyz/buf-check-reserved-keywords/blob/main/LICENSE",
 	},
 }
 
