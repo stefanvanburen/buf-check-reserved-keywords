@@ -1,6 +1,6 @@
 module go.vanburen.xyz/buf-check-reserved-keywords
 
-go 1.26.2
+go 1.27.0
 
 require (
 	buf.build/go/bufplugin v0.10.0
