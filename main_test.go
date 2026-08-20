@@ -1,11 +1,11 @@
 package main
 
 import (
-	"strings"
 	"testing"
 
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checktest"
+	"go.vanburen.xyz/ok"
 )
 
 func TestSpec(t *testing.T) {
@@ -601,23 +601,16 @@ func TestRule(t *testing.T) {
 
 				ctx := t.Context()
 				request, err := requestSpec.ToRequest(ctx)
-				if err != nil {
-					t.Fatal(err)
-				}
+				ok.MustNoError(t, err)
 				client, err := check.NewClientForSpec(spec)
-				if err != nil {
-					t.Fatal(err)
-				}
+				ok.MustNoError(t, err)
 				_, err = client.Check(ctx, request)
-				if err == nil {
-					t.Fatal("expected error")
-				}
 				// Just check the prefix, so this doesn't fail as we add new supported
-				// languages.
+				// languages. ErrorContains reports a nil error itself, so the
+				// separate "expected error" check would only have been a way to
+				// panic on err.Error() below.
 				const want = `Failed with code unknown: parsing options: invalid language given "invalid", expected one of:`
-				if !strings.Contains(err.Error(), want) {
-					t.Fatalf("got %q, want substring %q", err, want)
-				}
+				ok.ErrorContains(t, err, want)
 			})
 			t.Run("valid", func(t *testing.T) {
 				requestSpec := newRequestSpec(
