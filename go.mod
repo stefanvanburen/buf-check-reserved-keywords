@@ -34,7 +34,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20250811230008-5f3141c8851a // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250811230008-5f3141c8851a // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	honnef.co/go/tools v0.8.0-rc.1 // indirect
+	honnef.co/go/tools v0.8.0 // indirect
 	pluginrpc.com/pluginrpc v0.5.0 // indirect
 )
 
