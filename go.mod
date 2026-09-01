@@ -5,7 +5,7 @@ go 1.27.0
 require (
 	buf.build/go/bufplugin v0.10.0
 	go.vanburen.xyz/ok v0.4.0
-	google.golang.org/protobuf v1.36.11
+	google.golang.org/protobuf v1.36.12
 )
 
 require (
