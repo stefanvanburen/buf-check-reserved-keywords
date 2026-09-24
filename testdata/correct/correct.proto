@@ -3,5 +3,7 @@ syntax = "proto3";
 package user.v1;
 
 message Test {
+  // The map's synthetic entry message has a field named "value", which is a
+  // C# and Kotlin keyword; the check skips it.
   map<string, string> items = 1;
 }
