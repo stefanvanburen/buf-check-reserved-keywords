@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package select.v1;
 
+// protoc-gen-go exports every field under a PascalCase name, so fields
+// named as Go keywords are not reported.
 message Test {
   string for = 1;
   map<string, string> select = 2;

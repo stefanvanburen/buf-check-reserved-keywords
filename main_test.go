@@ -63,28 +63,6 @@ func TestRule(t *testing.T) {
 			)
 			want := []checktest.ExpectedAnnotation{
 				{
-					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Go reserved keyword "for".`,
-					FileLocation: &checktest.ExpectedFileLocation{
-						FileName:    "go.proto",
-						StartLine:   5,
-						StartColumn: 2,
-						EndLine:     5,
-						EndColumn:   17,
-					},
-				},
-				{
-					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "select" should not use Go reserved keyword "select".`,
-					FileLocation: &checktest.ExpectedFileLocation{
-						FileName:    "go.proto",
-						StartLine:   6,
-						StartColumn: 2,
-						EndLine:     6,
-						EndColumn:   33,
-					},
-				},
-				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
 					Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
 					FileLocation: &checktest.ExpectedFileLocation{
@@ -117,6 +95,17 @@ func TestRule(t *testing.T) {
 						StartColumn: 2,
 						EndLine:     5,
 						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "class" should not use Python reserved keyword "class".`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "python.proto",
+						StartLine:   6,
+						StartColumn: 2,
+						EndLine:     6,
+						EndColumn:   32,
 					},
 				},
 				{

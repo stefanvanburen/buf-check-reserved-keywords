@@ -122,6 +122,12 @@ func checkFieldNoLanguageReservedKeywords(
 			// Skip languages that aren't enabled.
 			continue
 		}
+		if language == "Go" {
+			// protoc-gen-go exports every field under a PascalCase name
+			// (`map` becomes `Map` and `GetMap`), so a field can never
+			// collide with a Go keyword.
+			continue
+		}
 		fieldName := string(fieldDescriptor.Name())
 		if slices.Contains(reservedKeywords, fieldName) {
 			responseWriter.AddAnnotation(
