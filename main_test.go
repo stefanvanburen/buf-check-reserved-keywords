@@ -577,6 +577,32 @@ func TestRule(t *testing.T) {
 			}
 			runCheckTest(t, requestSpec, want...)
 		})
+		t.Run("multiple", func(t *testing.T) {
+			t.Parallel()
+			// A field that is a keyword in several languages gets one annotation
+			// listing them in sorted order, whatever the option order.
+			requestSpec := newRequestSpec(
+				"testdata/multiple",
+				[]string{"multiple.proto"},
+				map[string]any{
+					"enabled_languages": []string{"rust", "python", "java"},
+				},
+			)
+			want := []checktest.ExpectedAnnotation{
+				{
+					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
+					Message: `Field name "for" is a reserved keyword in Java, Python, Rust.`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "multiple.proto",
+						StartLine:   5,
+						StartColumn: 2,
+						EndLine:     5,
+						EndColumn:   17,
+					},
+				},
+			}
+			runCheckTest(t, requestSpec, want...)
+		})
 	})
 	t.Run("valid", func(t *testing.T) {
 		t.Parallel()

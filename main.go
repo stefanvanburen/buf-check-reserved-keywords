@@ -4,6 +4,7 @@ import (
 	"context"
 	_ "embed"
 	"fmt"
+	"maps"
 	"slices"
 	"strings"
 
@@ -117,7 +118,11 @@ func checkFieldNoLanguageReservedKeywords(
 	if err != nil {
 		return fmt.Errorf("parsing options: %w", err)
 	}
-	for language, reservedKeywords := range languageReservedKeywords {
+	fieldName := string(fieldDescriptor.Name())
+	// Report every matching language in one annotation, so a field like `for`
+	// gets a single annotation rather than one per language.
+	var languages []string
+	for _, language := range slices.Sorted(maps.Keys(languageReservedKeywords)) {
 		if !slices.Contains(validLanguages, strings.ToLower(language)) {
 			// Skip languages that aren't enabled.
 			continue
@@ -128,18 +133,21 @@ func checkFieldNoLanguageReservedKeywords(
 			// collide with a Go keyword.
 			continue
 		}
-		fieldName := string(fieldDescriptor.Name())
-		if slices.Contains(reservedKeywords, fieldName) {
-			responseWriter.AddAnnotation(
-				check.WithMessagef(
-					"Field name %q is a reserved keyword in %s.",
-					fieldName,
-					language,
-				),
-				check.WithDescriptor(fieldDescriptor),
-			)
+		if slices.Contains(languageReservedKeywords[language], fieldName) {
+			languages = append(languages, language)
 		}
 	}
+	if len(languages) == 0 {
+		return nil
+	}
+	responseWriter.AddAnnotation(
+		check.WithMessagef(
+			"Field name %q is a reserved keyword in %s.",
+			fieldName,
+			strings.Join(languages, ", "),
+		),
+		check.WithDescriptor(fieldDescriptor),
+	)
 	return nil
 }
 
