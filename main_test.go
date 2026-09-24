@@ -40,7 +40,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "private.v1" should not use Java reserved keyword "private".`,
+					Message: `Package name "private.v1" contains "private", a reserved keyword in Java.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "java.proto",
 						StartLine:   2,
@@ -64,7 +64,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "select.v1" should not use Go reserved keyword "select".`,
+					Message: `Package name "select.v1" contains "select", a reserved keyword in Go.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "go.proto",
 						StartLine:   2,
@@ -110,7 +110,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "continue.v1" should not use Python reserved keyword "continue".`,
+					Message: `Package name "continue.v1" contains "continue", a reserved keyword in Python.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "python.proto",
 						StartLine:   2,
@@ -145,7 +145,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "typeof.v1" should not use JavaScript reserved keyword "typeof".`,
+					Message: `Package name "typeof.v1" contains "typeof", a reserved keyword in JavaScript.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "javascript.proto",
 						StartLine:   2,
@@ -180,7 +180,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "show.v1" should not use Dart reserved keyword "show".`,
+					Message: `Package name "show.v1" contains "show", a reserved keyword in Dart.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "dart.proto",
 						StartLine:   2,
@@ -215,7 +215,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "trait.v1" should not use Rust reserved keyword "trait".`,
+					Message: `Package name "trait.v1" contains "trait", a reserved keyword in Rust.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "rust.proto",
 						StartLine:   2,
@@ -250,7 +250,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "switch.v1" should not use C reserved keyword "switch".`,
+					Message: `Package name "switch.v1" contains "switch", a reserved keyword in C.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "c.proto",
 						StartLine:   2,
@@ -285,7 +285,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "class.v1" should not use C++ reserved keyword "class".`,
+					Message: `Package name "class.v1" contains "class", a reserved keyword in C++.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "cpp.proto",
 						StartLine:   2,
@@ -320,7 +320,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "namespace.v1" should not use C# reserved keyword "namespace".`,
+					Message: `Package name "namespace.v1" contains "namespace", a reserved keyword in C#.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "csharp.proto",
 						StartLine:   2,
@@ -355,7 +355,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "object.v1" should not use Kotlin reserved keyword "object".`,
+					Message: `Package name "object.v1" contains "object", a reserved keyword in Kotlin.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "kotlin.proto",
 						StartLine:   2,
@@ -390,7 +390,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "function.v1" should not use PHP reserved keyword "function".`,
+					Message: `Package name "function.v1" contains "function", a reserved keyword in PHP.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "php.proto",
 						StartLine:   2,
@@ -425,7 +425,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "class.v1" should not use Ruby reserved keyword "class".`,
+					Message: `Package name "class.v1" contains "class", a reserved keyword in Ruby.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "ruby.proto",
 						StartLine:   2,
@@ -460,7 +460,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "object.v1" should not use Scala reserved keyword "object".`,
+					Message: `Package name "object.v1" contains "object", a reserved keyword in Scala.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "scala.proto",
 						StartLine:   2,
@@ -495,7 +495,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "protocol.v1" should not use Swift reserved keyword "protocol".`,
+					Message: `Package name "protocol.v1" contains "protocol", a reserved keyword in Swift.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "swift.proto",
 						StartLine:   2,
@@ -530,7 +530,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "namespace.v1" should not use TypeScript reserved keyword "namespace".`,
+					Message: `Package name "namespace.v1" contains "namespace", a reserved keyword in TypeScript.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "typescript.proto",
 						StartLine:   2,
@@ -565,7 +565,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
-					Message: `Package name "protocol.v1" should not use Objective-C reserved keyword "protocol".`,
+					Message: `Package name "protocol.v1" contains "protocol", a reserved keyword in Objective-C.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "objc.proto",
 						StartLine:   2,
@@ -579,8 +579,9 @@ func TestRule(t *testing.T) {
 		})
 		t.Run("multiple", func(t *testing.T) {
 			t.Parallel()
-			// A field that is a keyword in several languages gets one annotation
-			// listing them in sorted order, whatever the option order.
+			// A field or package component that is a keyword in several languages
+			// gets one annotation listing them in sorted order, whatever the option
+			// order.
 			requestSpec := newRequestSpec(
 				"testdata/multiple",
 				[]string{"multiple.proto"},
@@ -598,6 +599,17 @@ func TestRule(t *testing.T) {
 						StartColumn: 2,
 						EndLine:     5,
 						EndColumn:   17,
+					},
+				},
+				{
+					RuleID:  ruleIDPackageNoLanguageReservedKeywords,
+					Message: `Package name "for.v1" contains "for", a reserved keyword in Java, Python, Rust.`,
+					FileLocation: &checktest.ExpectedFileLocation{
+						FileName:    "multiple.proto",
+						StartLine:   2,
+						StartColumn: 0,
+						EndLine:     2,
+						EndColumn:   15,
 					},
 				},
 			}

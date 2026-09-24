@@ -75,29 +75,25 @@ func checkPackageNoLanguageReservedKeywords(
 	}
 	packageComponents := strings.SplitSeq(*packageName, ".")
 	for packageComponent := range packageComponents {
-		for language, reservedKeywords := range languageReservedKeywords {
-			if !slices.Contains(validLanguages, strings.ToLower(language)) {
-				// Skip languages that aren't enabled.
-				continue
-			}
-			if slices.Contains(reservedKeywords, packageComponent) {
-				responseWriter.AddAnnotation(
-					check.WithMessagef(
-						"Package name %q should not use %s reserved keyword %q.",
-						*packageName,
-						language,
-						packageComponent,
-					),
-					check.WithFileNameAndSourcePath(
-						*fileDescriptor.FileDescriptorProto().Name,
-						// A well-formed .proto file can only have a single `package` statement;
-						// use that location.
-						// https://github.com/protocolbuffers/protobuf/blob/6556a4ea26f2273797f559ebad87df42cd540443/src/google/protobuf/descriptor.proto#L109
-						[]int32{2},
-					),
-				)
-			}
+		languages := reservedIn(packageComponent, validLanguages)
+		if len(languages) == 0 {
+			continue
 		}
+		responseWriter.AddAnnotation(
+			check.WithMessagef(
+				"Package name %q contains %q, a reserved keyword in %s.",
+				*packageName,
+				packageComponent,
+				strings.Join(languages, ", "),
+			),
+			check.WithFileNameAndSourcePath(
+				*fileDescriptor.FileDescriptorProto().Name,
+				// A well-formed .proto file can only have a single `package` statement;
+				// use that location.
+				// https://github.com/protocolbuffers/protobuf/blob/6556a4ea26f2273797f559ebad87df42cd540443/src/google/protobuf/descriptor.proto#L109
+				[]int32{2},
+			),
+		)
 	}
 	return nil
 }
@@ -119,24 +115,12 @@ func checkFieldNoLanguageReservedKeywords(
 		return fmt.Errorf("parsing options: %w", err)
 	}
 	fieldName := string(fieldDescriptor.Name())
-	// Report every matching language in one annotation, so a field like `for`
-	// gets a single annotation rather than one per language.
-	var languages []string
-	for _, language := range slices.Sorted(maps.Keys(languageReservedKeywords)) {
-		if !slices.Contains(validLanguages, strings.ToLower(language)) {
-			// Skip languages that aren't enabled.
-			continue
-		}
-		if language == "Go" {
-			// protoc-gen-go exports every field under a PascalCase name
-			// (`map` becomes `Map` and `GetMap`), so a field can never
-			// collide with a Go keyword.
-			continue
-		}
-		if slices.Contains(languageReservedKeywords[language], fieldName) {
-			languages = append(languages, language)
-		}
-	}
+	languages := slices.DeleteFunc(reservedIn(fieldName, validLanguages), func(language string) bool {
+		// protoc-gen-go exports every field under a PascalCase name
+		// (`map` becomes `Map` and `GetMap`), so a field can never
+		// collide with a Go keyword.
+		return language == "Go"
+	})
 	if len(languages) == 0 {
 		return nil
 	}
@@ -149,6 +133,23 @@ func checkFieldNoLanguageReservedKeywords(
 		check.WithDescriptor(fieldDescriptor),
 	)
 	return nil
+}
+
+// reservedIn returns the sorted names of the enabled languages that reserve
+// word, so that each name is reported in one annotation rather than one per
+// language.
+func reservedIn(word string, validLanguages []string) []string {
+	var languages []string
+	for _, language := range slices.Sorted(maps.Keys(languageReservedKeywords)) {
+		if !slices.Contains(validLanguages, strings.ToLower(language)) {
+			// Skip languages that aren't enabled.
+			continue
+		}
+		if slices.Contains(languageReservedKeywords[language], word) {
+			languages = append(languages, language)
+		}
+	}
+	return languages
 }
 
 func getOptions(request check.Request) (validLanguages []string, err error) {
