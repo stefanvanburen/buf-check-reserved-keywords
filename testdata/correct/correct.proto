@@ -2,4 +2,6 @@ syntax = "proto3";
 
 package user.v1;
 
-message Test {}
+message Test {
+  map<string, string> items = 1;
+}
