@@ -49,6 +49,29 @@ For example, the following enables just checking for keywords for `go` and `pyth
       - python
 ```
 
+## Ignoring
+
+Where a keyword is known not to cause problems, use `buf`'s lint ignores.
+Ignore a single field or package with a [comment][buf-comment-ignores] on the line above it:
+
+```proto
+// buf:lint:ignore PLUGIN_PACKAGE_NO_LANGUAGE_RESERVED_KEYWORDS
+package map.v1;
+
+message Robot {
+  // buf:lint:ignore PLUGIN_FIELD_NO_LANGUAGE_RESERVED_KEYWORDS
+  string type = 1;
+}
+```
+
+Or ignore a rule for whole directories or files with [`ignore_only`][buf-ignore-only] in `buf.yaml`:
+
+```yaml
+lint:
+  ignore_only:
+    PLUGIN_FIELD_NO_LANGUAGE_RESERVED_KEYWORDS:
+      - proto/legacy
+```
 
 ## Why?
 
@@ -80,6 +103,8 @@ and prevent their usage in protobuf files.
 
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
+[buf-comment-ignores]: https://buf.build/docs/configuration/v2/buf-yaml/#disallow_comment_ignores
+[buf-ignore-only]: https://buf.build/docs/configuration/v2/buf-yaml/#ignore_only
 [bsr-module]: https://buf.build/svanburenorg/reserved-keywords
 [buf-check-plugin]: https://github.com/bufbuild/bufplugin
 [c]: https://en.cppreference.com/w/c/keyword.html
