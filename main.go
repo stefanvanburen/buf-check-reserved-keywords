@@ -132,10 +132,9 @@ func checkFieldNoLanguageReservedKeywords(
 		if slices.Contains(reservedKeywords, fieldName) {
 			responseWriter.AddAnnotation(
 				check.WithMessagef(
-					"Field name %q should not use %s reserved keyword %q.",
+					"Field name %q is a reserved keyword in %s.",
 					fieldName,
 					language,
-					fieldName,
 				),
 				check.WithDescriptor(fieldDescriptor),
 			)
