@@ -78,6 +78,10 @@ and prevent their usage in protobuf files.
 * [Swift][]
 * [TypeScript][]
 
+Go keywords are checked in package names only:
+`protoc-gen-go` exports every field under a PascalCase name (`map` becomes `Map`),
+so a field named after a Go keyword does not collide.
+
 [best-practice]: https://buf.build/docs/best-practices/style-guide/#recommendations
 [buf-yaml-plugins]: https://buf.build/docs/configuration/v2/buf-yaml/#plugins
 [bsr-module]: https://buf.build/svanburenorg/reserved-keywords
