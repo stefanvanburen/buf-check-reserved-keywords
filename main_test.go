@@ -29,7 +29,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Java reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Java.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "java.proto",
 						StartLine:   5,
@@ -88,7 +88,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Python reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Python.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "python.proto",
 						StartLine:   5,
@@ -99,7 +99,7 @@ func TestRule(t *testing.T) {
 				},
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "class" should not use Python reserved keyword "class".`,
+					Message: `Field name "class" is a reserved keyword in Python.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "python.proto",
 						StartLine:   6,
@@ -134,7 +134,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use JavaScript reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in JavaScript.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "javascript.proto",
 						StartLine:   5,
@@ -169,7 +169,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Dart reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Dart.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "dart.proto",
 						StartLine:   5,
@@ -204,7 +204,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Rust reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Rust.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "rust.proto",
 						StartLine:   5,
@@ -239,7 +239,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use C reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in C.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "c.proto",
 						StartLine:   5,
@@ -274,7 +274,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use C++ reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in C++.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "cpp.proto",
 						StartLine:   5,
@@ -309,7 +309,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use C# reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in C#.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "csharp.proto",
 						StartLine:   5,
@@ -344,7 +344,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Kotlin reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Kotlin.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "kotlin.proto",
 						StartLine:   5,
@@ -379,7 +379,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use PHP reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in PHP.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "php.proto",
 						StartLine:   5,
@@ -414,7 +414,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Ruby reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Ruby.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "ruby.proto",
 						StartLine:   5,
@@ -449,7 +449,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Scala reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Scala.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "scala.proto",
 						StartLine:   5,
@@ -484,7 +484,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Swift reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Swift.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "swift.proto",
 						StartLine:   5,
@@ -519,7 +519,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use TypeScript reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in TypeScript.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "typescript.proto",
 						StartLine:   5,
@@ -554,7 +554,7 @@ func TestRule(t *testing.T) {
 			want := []checktest.ExpectedAnnotation{
 				{
 					RuleID:  ruleIDFieldNoLanguageReservedKeywords,
-					Message: `Field name "for" should not use Objective-C reserved keyword "for".`,
+					Message: `Field name "for" is a reserved keyword in Objective-C.`,
 					FileLocation: &checktest.ExpectedFileLocation{
 						FileName:    "objc.proto",
 						StartLine:   5,
