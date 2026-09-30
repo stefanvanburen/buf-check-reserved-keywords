@@ -4,11 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+      time: "08:00"
+      timezone: "America/New_York"
     cooldown:
       default-days: 7
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
       interval: "monthly"
+      time: "08:00"
+      timezone: "America/New_York"
     cooldown:
       default-days: 7
