@@ -42,8 +42,8 @@ github.com/stefanvanburen/colorcmp v0.3.0 h1:qRuWEVGoss4QQt4uQXrqaYsg8INFucQnjxN
 github.com/stefanvanburen/colorcmp v0.3.0/go.mod h1:ETpGxte4uvgOUaAzV0/evd1+K1nVCP9w7EWSG1MqvqE=
 github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu7U=
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
-go.vanburen.xyz/ok v0.4.0 h1:XuJZ1AmGp5kTtwuKmt1c4YGHtFKqdD11VqrVC/xnC0c=
-go.vanburen.xyz/ok v0.4.0/go.mod h1:qhDBRj0ibwVZ0Py9C7689nO3xirADop7E2jNflCrNV0=
+go.vanburen.xyz/ok v0.7.0 h1:4KyaEtaGlf9yWKKFnSujEtsqpX/nYfCzkBnX8OEONfU=
+go.vanburen.xyz/ok v0.7.0/go.mod h1:qhDBRj0ibwVZ0Py9C7689nO3xirADop7E2jNflCrNV0=
 go.yaml.in/yaml/v3 v3.0.4 h1:tfq32ie2Jv2UxXFdLJdh3jXuOzWiL1fo0bu/FbuKpbc=
 go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=
 golang.org/x/exp v0.0.0-20250813145105-42675adae3e6 h1:SbTAbRFnd5kjQXbczszQ0hdk3ctwYf3qBNH9jIsGclE=
